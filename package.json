@@ -1,0 +1,57 @@
+{
+  "name": "react-form-reducer-validator",
+  "version": "1.0.0",
+  "description": "The validator resolver for react-from-reducer, this package uses validatorjs, and wraps it to be used with react-form-reducer",
+  "source": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.mjs"
+  },
+  "scripts": {
+    "build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+    "start": "microbundle watch ---jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "lint:fix": "eslint --fix src/**/*.ts src/**/*.tsx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/validatorjs": "^3.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.8.4",
+    "react": "^18.2.0",
+    "typescript": "^4.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetscript/react-form-reducer-validator.git"
+  },
+  "keywords": [
+    "react-from-reducer",
+    "validatorjs"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "Majid Kuhail <majid@sweetscript.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sweetscript/react-form-reducer-validator/issues"
+  },
+  "homepage": "https://github.com/sweetscript/react-form-reducer-validator#readme",
+  "peerDependencies": {
+    "react-form-reducer": "^1.0.1"
+  },
+  "dependencies": {
+    "validatorjs": "^3.22.1"
+  }
+}

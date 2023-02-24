@@ -1,0 +1,2 @@
+import{ValidationResolver as s}from"react-form-reducer";import r from"validatorjs";class e extends s{constructor(s,r){return super(),this.rules=void 0,this.messages=void 0,this.rules=s,this.messages=r,this}validate(s,e){let t=this.rules||{},o=s||{};if(e){o={};const r={};e.forEach(e=>{o[e]=null==s?void 0:s[e],t[e]&&(r[e]=t[e])}),t=r}const i=new r(o,t,this.messages);return!!i.passes()||i.errors.all()}}export{e as Resolver};
+//# sourceMappingURL=index.modern.mjs.map
