@@ -49,7 +49,7 @@
   },
   "homepage": "https://github.com/sweetscript/react-form-reducer-validator#readme",
   "peerDependencies": {
-    "react-form-reducer": "^1.0.1"
+    "react-form-reducer": "^1.0.5"
   },
   "dependencies": {
     "validatorjs": "^3.22.1"
