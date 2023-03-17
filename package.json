@@ -1,6 +1,6 @@
 {
   "name": "react-form-reducer-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The validator resolver for react-from-reducer, this package uses validatorjs, and wraps it to be used with react-form-reducer",
   "source": "src/index.ts",
   "main": "./dist/index.js",
