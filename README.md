@@ -41,7 +41,7 @@ export function ValidatedForm() {
     {
       validation: new Resolver(
       	{
-	  // Validation rules
+	      // Validation rules
           name: 'required',
           email: 'required|email',
           password: 'required',
@@ -49,10 +49,20 @@ export function ValidatedForm() {
           terms: 'accepted'
         },
         {
-	  // Custom messages
+	      // Custom messages
           'accepted.terms': 'Please accept the :attribute',
           'same.password_confirmation': "Passwords don't match"
-        }
+        },
+        [
+          // Custom Validation Rules
+          {
+            name: 'telephone',
+            callback: (fieldValue, args, attribute, data) => {
+              return fieldValue.match(/^\d{3}-\d{3}-\d{4}$/);
+            },
+            message: 'The :attribute phone number is not in the format XXX-XXX-XXXX.'
+          }
+        ]
       )
     }
   );

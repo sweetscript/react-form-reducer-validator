@@ -1,17 +1,41 @@
-import { ValidationResolver } from 'react-form-reducer';
+import { ValidationResolver, Errors } from 'react-form-reducer';
 import Validator, { ErrorMessages, Rules } from 'validatorjs';
-import { Errors } from 'react-form-reducer';
 
-export default class Resolver<
-  IData extends { [key: string]: unknown } | null
-> extends ValidationResolver<IData> {
+export type CustomValidationCallback = (
+  fieldValue: any,
+  args: any,
+  attribute: any,
+  data: any
+) => boolean;
+export type CustomValidationRule = {
+  name: string;
+  callback: CustomValidationCallback;
+  message: string;
+};
+
+export default class Resolver<IData = any> extends ValidationResolver<IData> {
   rules?: Rules;
   messages?: ErrorMessages;
+  customRules?: CustomValidationRule[];
 
-  constructor(rules: Rules, messages?: ErrorMessages) {
+  constructor(
+    rules: Rules,
+    messages?: ErrorMessages,
+    customValidationRules?: CustomValidationRule[]
+  ) {
     super();
     this.rules = rules;
     this.messages = messages;
+    this.customRules = [
+      {
+        name: 'required_if',
+        callback: (fieldValue, args, _, data) => {
+          const isRequired = `${data[args[0]]}` === `${args[1]}`;
+          return !isRequired || (fieldValue && fieldValue !== '');
+        },
+        message: 'The :attribute field is required'
+      }
+    ].concat(customValidationRules || []);
 
     return this;
   }
@@ -29,6 +53,17 @@ export default class Resolver<
         }
       });
       rules = fieldRules;
+    }
+    if (this.customRules) {
+      this.customRules.forEach((customRule) => {
+        Validator.register(
+          customRule.name,
+          (value, args, attribute) => {
+            return customRule.callback(value, args, attribute, fields);
+          },
+          customRule.message
+        );
+      });
     }
     const validation = new Validator(
       validateFields,

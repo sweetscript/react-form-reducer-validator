@@ -1,1 +1,4 @@
-export { default as Resolver } from './validatorjs/Resolver';
+export {
+  default as Resolver,
+  CustomValidationRule
+} from './validatorjs/Resolver';
